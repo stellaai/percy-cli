@@ -14,7 +14,7 @@
     "clean": "git clean -Xdf --exclude !node_modules",
     "lint": "eslint --ignore-path .gitignore .",
     "readme": "lerna run --parallel readme",
-    "postinstall": "lerna run --stream postinstall",
+    "postinstall": "",
     "test": "lerna run --stream --concurrency=1 test",
     "test:coverage": "lerna run --stream --concurrency=1 test:coverage",
     "test:types": "lerna run --parallel test:types"
