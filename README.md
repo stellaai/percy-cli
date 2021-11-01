@@ -1,3 +1,19 @@
+# INGENOVIS NOTE: this is a forked build from percy's monorepo
+
+To recreate do the follow;
+
+Clone their repo locally
+yarn
+make your changes
+yarn build
+create a new repo under our org
+push the built files of the package your want to fork+publish
+link to the new repo from package.json in our monorepo
+
+eg edit an app/lib from blaze repo ... package.json 
+
+add "percy-cli": "ssh+git@github.com:stellaai/percy-cli.git",
+
 # Percy CLI
 
 [![Test](https://github.com/percy/cli/workflows/Test/badge.svg)](https://github.com/percy/cli/actions)
@@ -5,11 +21,13 @@
 The Percy CLI is used to interact with, and upload snapshots to, [percy.io](https://percy.io) via
 the command line.
 
-- [Installation](#installation)
-- [Command Topics](#command-topics)
-- [Advanced](#advanced)
-- [Issues](#issues)
-- [Developing](#developing)
+- [INGENOVIS NOTE: this is a forked build from percy's monorepo](#ingenovis-note-this-is-a-forked-build-from-percys-monorepo)
+- [Percy CLI](#percy-cli)
+  - [Installation](#installation)
+  - [Command Topics](#command-topics)
+    - [Advanced](#advanced)
+  - [Issues](#issues)
+  - [Developing](#developing)
 
 ## Installation
 
