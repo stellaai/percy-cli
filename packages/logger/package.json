@@ -1,0 +1,34 @@
+{
+  "name": "@percy/logger",
+  "version": "1.0.0-beta.70",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "browser": "dist/bundle.js",
+  "files": [
+    "dist",
+    "test/helpers.js",
+    "test/client.js"
+  ],
+  "engines": {
+    "node": ">=12"
+  },
+  "scripts": {
+    "build": "node ../../scripts/build",
+    "lint": "eslint --ignore-path ../../.gitignore .",
+    "test": "node ../../scripts/test",
+    "test:coverage": "yarn test --coverage"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "rollup": {
+    "output": {
+      "name": "PercyLogger"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/percy/cli",
+    "directory": "packages/logger"
+  }
+}

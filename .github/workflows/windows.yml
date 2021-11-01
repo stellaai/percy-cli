@@ -1,0 +1,83 @@
+name: Windows
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+jobs:
+  build:
+    name: Build
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 12
+      - uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+            packages/*/node_modules
+            packages/core/.local-chromium
+          key: >
+            ${{ runner.os }}/node-12/
+            ${{ hashFiles('.github/.cache-key') }}/
+            ${{ hashFiles('**/yarn.lock') }}
+          restore-keys: >
+            ${{ runner.os }}/node-12/
+            ${{ hashFiles('.github/.cache-key') }}/
+      - run: yarn
+        env:
+          PERCY_POSTINSTALL_BROWSER: true
+      - run: yarn build
+      - uses: actions/upload-artifact@v2
+        with:
+          name: dist
+          path: packages/*/dist
+
+  test:
+    name: Test ${{ matrix.package }}
+    needs: [build]
+    strategy:
+      matrix:
+        package:
+          - '@percy/env'
+          - '@percy/client'
+          - '@percy/dom'
+          - '@percy/logger'
+          - '@percy/config'
+          - '@percy/core'
+          - '@percy/cli'
+          - '@percy/cli-command'
+          - '@percy/cli-exec'
+          - '@percy/cli-snapshot'
+          - '@percy/cli-upload'
+          - '@percy/cli-build'
+          - '@percy/cli-config'
+          - '@percy/sdk-utils'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 12
+      - uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+            packages/*/node_modules
+            packages/core/.local-chromium
+          key: >
+            ${{ runner.os }}/node-12/
+            ${{ hashFiles('.github/.cache-key') }}/
+            ${{ hashFiles('**/yarn.lock') }}
+          restore-keys: >
+            ${{ runner.os }}/node-12/
+            ${{ hashFiles('.github/.cache-key') }}/
+      - uses: actions/download-artifact@v2
+        with:
+          name: dist
+          path: packages
+      - run: yarn
+      - name: Run tests
+        run: yarn workspace ${{ matrix.package }} test --colors

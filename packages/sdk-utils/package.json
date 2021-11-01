@@ -1,0 +1,56 @@
+{
+  "name": "@percy/sdk-utils",
+  "version": "1.0.0-beta.70",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "browser": "dist/bundle.js",
+  "files": [
+    "dist",
+    "test/helpers.js",
+    "test/server.js",
+    "test/client.js"
+  ],
+  "engines": {
+    "node": ">=12"
+  },
+  "scripts": {
+    "build": "node ../../scripts/build",
+    "lint": "eslint --ignore-path ../../.gitignore .",
+    "test": "node ../../scripts/test",
+    "test:coverage": "yarn test --coverage"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "karma": {
+    "run_start": "node test/server start &",
+    "run_complete": "node test/server stop"
+  },
+  "rollup": {
+    "external": [
+      "ws"
+    ],
+    "output": {
+      "name": "PercySDKUtils"
+    },
+    "test": {
+      "external": [
+        "@percy/logger",
+        "test/server(.js)?"
+      ],
+      "output": {
+        "globals": {
+          "@percy/logger": "PercySDKUtils.logger"
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "@percy/logger": "1.0.0-beta.70"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/percy/cli",
+    "directory": "packages/sdk-utils"
+  }
+}

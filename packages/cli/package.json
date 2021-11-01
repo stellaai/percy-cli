@@ -1,0 +1,49 @@
+{
+  "name": "@percy/cli",
+  "version": "1.0.0-beta.70",
+  "license": "MIT",
+  "main": "index.js",
+  "bin": {
+    "percy": "bin/run"
+  },
+  "files": [
+    "bin",
+    "index.js",
+    "oclif.manifest.json"
+  ],
+  "engines": {
+    "node": ">=12"
+  },
+  "scripts": {
+    "lint": "eslint --ignore-path ../../.gitignore .",
+    "test": "node ../../scripts/test",
+    "test:coverage": "yarn test --coverage"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "oclif": {
+    "bin": "percy",
+    "plugins": [
+      "@percy/cli-config",
+      "@percy/cli-exec",
+      "@percy/cli-build",
+      "@percy/cli-snapshot",
+      "@percy/cli-upload",
+      "@oclif/plugin-help"
+    ]
+  },
+  "dependencies": {
+    "@oclif/plugin-help": "^3.2.0",
+    "@percy/cli-build": "1.0.0-beta.70",
+    "@percy/cli-config": "1.0.0-beta.70",
+    "@percy/cli-exec": "1.0.0-beta.70",
+    "@percy/cli-snapshot": "1.0.0-beta.70",
+    "@percy/cli-upload": "1.0.0-beta.70"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/percy/cli",
+    "directory": "packages/cli"
+  }
+}
