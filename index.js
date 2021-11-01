@@ -92,7 +92,8 @@ async function autoRegisterPlugins() {
   // find unregistered plugins
   let unregistered = await Promise.all([
     findPlugins(nodeModules, '@percy/*', registered),
-    findPlugins(nodeModules, 'percy-cli-*', registered)
+    findPlugins(nodeModules, 'percy-cli-*', registered),
+    findPlugins(pnpmNodeModules, '@percy*', registered)
   ]).then((p) => Array.from(new Set(p.flat())));
 
   // if any unregistered or unresolved registered, modify plugin registry
