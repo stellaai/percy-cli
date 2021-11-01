@@ -1,4 +1,7 @@
 {
+  "name": "@ingenovis/percy-cli",
+  "version": "1.0.0",
+  "description": "A fork of percy-cli",
   "private": true,
   "workspaces": [
     "packages/*"
