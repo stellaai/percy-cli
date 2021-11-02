@@ -2,6 +2,7 @@
 
 To recreate do the follow;
 
+```
 Clone their repo locally
 yarn
 make your changes
@@ -9,6 +10,7 @@ yarn build
 create a new repo under our org
 push the built files of the package your want to fork+publish
 link to the new repo from package.json in our monorepo
+```
 
 eg edit an app/lib from blaze repo ... package.json 
 
